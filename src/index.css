@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+:root {
+  --primary: #2c6e72;
+  --accent-bronze: #A88E6A;
+  --background-light: #f4f2f1;
+  --background-dark: #191b1f;
+  --card-dark: #2C2F33
+}
+
+.primary {
+  color: var(--primary);
+}
+
+.accent-bronze {
+  color: var(--accent-bronze);
+}
+
+.background-light {
+  background-color: var(--background-light);
+}
+
+.background-dark {
+  background-color: var(--background-dark);
+}
+
+.no-scrollbar::-webkit-scrollbar{
+  display: none;
+}

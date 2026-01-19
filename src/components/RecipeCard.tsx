@@ -1,0 +1,81 @@
+import { Bookmark, Clock, Flame } from "lucide-react";
+import { FaStar } from "react-icons/fa";
+
+export interface RecipeCardProps {
+  recipe: {
+    id: number;
+    name: string;
+    image: string;
+    cuisine: string;
+    rating: number;
+    prepTimeMinutes: number;
+    caloriesPerServing: number;
+    tags: string[];
+    length: number;
+  }
+}
+
+const RecipeCard = ({ recipe }: RecipeCardProps) => {
+
+  // console.log(recipe.tags);
+
+  return (
+    <div className="min-w-85 group space-y-4">
+      <div className="relative aspect-4/5 overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800">
+        <button title="Bookmark" className="size-10 absolute z-10 right-3 top-3 rounded-full bg-white/50 dark:bg-[#191b1f]/50 backdrop-blur-md flex items-center justify-center text-white hover:text-[#2c6e72] cursor-pointer transition-all">
+          <Bookmark />
+        </button>
+
+        <img
+          src={recipe.image}
+          alt={recipe.name}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-bold uppercase text-[#2c6e72]">
+            {recipe.cuisine}
+          </span>
+          <div className="flex items-center gap-1 text-sm font-medium">
+            {/* <Star className="text-yellow-500 text-sm!" /> */}
+            <FaStar className="text-yellow-500" />
+            {recipe.rating}
+          </div>
+        </div>
+
+        <h4 className="font-display text-xl cursor-pointer font-bold transition-all group-hover:text-[#2c6e72]">
+          {recipe.name}
+        </h4>
+
+        {/* Tags */}
+        <div>
+          {recipe.tags.map((tag) => (
+            <span key={recipe.id + tag}
+              className="text-xs bg-neutral-600/30 backdrop-blur-3xl border rounded-full px-2 py-1 mr-2 inline-block mb-2 text-white border-neutral-600/50"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-4 text-sm text-neutral-500">
+          <div className="flex items-center gap-1">
+            <Clock />
+            {recipe.prepTimeMinutes}m
+          </div>
+          <div className="flex items-center gap-1">
+            <Flame />
+            {recipe.caloriesPerServing} kcal
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  );
+};
+
+export default RecipeCard;

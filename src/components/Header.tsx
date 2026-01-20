@@ -39,20 +39,23 @@ const Header = () => {
               </div>
             </div>
             <div className="flex items-center gap-6">
-              <div className="flex items-center gap-4 border-slate-300 dark:border-slate-700 pl-6">
-                <button className="flex items-center cursor-pointer gap-2">
-                  <div
-                    className="size-8 rounded-full bg-cover bg-center"
-                    data-alt="User profile avatar portrait"
-                    style={{
-                      backgroundImage:
-                        'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCRw14TUKxb5rImR90Doh8et0b2uLr4z-RLudcrKixkvruEHu7NPL2km0T_PBKx4BO_rVfFyChmZuDgLjWJiLw1LRnUs2oxspNhhUKderDDFff2vbOqKjzxZZ8ty2udQowx5PGOf6M_xBKRa_kdvOp9pYC2dELelW9lSbiwHai-aSfnjD2wmsAhrE8prmKrczgNYej4auq4y3Dq675WFMcHQ7Y6VUz_Qat-e02ORmeq2n5zAXqJbmj1JmOM902KVDRG5lOClfZWTdiw")'
-                    }}
-                  />
-                  <span className="hidden lg:block text-sm font-medium">
-                    Rakesh Patel
-                  </span>
-                </button>
+              <div className="flex items-center gap-4  pl-6">
+
+                <Link to="/profile">
+                  <button className="flex items-center cursor-pointer gap-2">
+                    <div
+                      className="size-8 rounded-full bg-cover bg-center"
+                      data-alt="User profile avatar portrait"
+                      style={{
+                        backgroundImage:
+                          'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCRw14TUKxb5rImR90Doh8et0b2uLr4z-RLudcrKixkvruEHu7NPL2km0T_PBKx4BO_rVfFyChmZuDgLjWJiLw1LRnUs2oxspNhhUKderDDFff2vbOqKjzxZZ8ty2udQowx5PGOf6M_xBKRa_kdvOp9pYC2dELelW9lSbiwHai-aSfnjD2wmsAhrE8prmKrczgNYej4auq4y3Dq675WFMcHQ7Y6VUz_Qat-e02ORmeq2n5zAXqJbmj1JmOM902KVDRG5lOClfZWTdiw")'
+                      }}
+                    />
+                    <span className="hidden lg:block text-sm font-medium">
+                      Rakesh Patel
+                    </span>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

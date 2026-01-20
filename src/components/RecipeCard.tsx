@@ -1,5 +1,6 @@
-import { Bookmark, Clock, Flame } from "lucide-react";
+import { Clock, Flame } from "lucide-react";
 import { FaStar } from "react-icons/fa";
+import { BookmarkRecipe } from "./BookmarkRecipe";
 
 export interface RecipeCardProps {
   recipe: {
@@ -17,14 +18,16 @@ export interface RecipeCardProps {
 
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
 
-  // console.log(recipe.tags);
-
   return (
-    <div className="min-w-85 group space-y-4">
+    <div className=" min-w-70 group space-y-4">
       <div className="relative aspect-4/5 overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800">
-        <button title="Bookmark" className="size-10 absolute z-10 right-3 top-3 rounded-full bg-white/50 dark:bg-[#191b1f]/50 backdrop-blur-md flex items-center justify-center text-white hover:text-[#2c6e72] cursor-pointer transition-all">
-          <Bookmark />
-        </button>
+        {/* <button title="Bookmark" className="size-10 absolute z-10 right-3 top-3 rounded-full bg-white/50 dark:bg-[#191b1f]/50 backdrop-blur-md flex items-center justify-center text-white hover:text-[#2c6e72] cursor-pointer transition-all">
+
+        </button> */}
+
+        <div className="absolute z-10 right-3 top-3">
+          <BookmarkRecipe />
+        </div>
 
         <img
           src={recipe.image}

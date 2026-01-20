@@ -20,18 +20,29 @@ const Home = () => {
 
   const { recipeData, loading, error } = context;
 
-  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const easyRecipes = recipeData.filter((recipe) => recipe.difficulty === "Medium");
 
+  const lowCaloryRecipes = recipeData.filter((recipe) => recipe.caloriesPerServing <= 300);
 
-  const scrollLeft = () => {
-    scrollRef.current?.scrollBy({
-      left: -360, // card width + gap
+  // console.log(recipeData.filter((recipe) => recipe.caloriesPerServing >= 400));
+
+  // const uniqueAges = [...new Set(recipeData.map(item => item.caloriesPerServing).sort())];
+
+  // console.log(uniqueAges);
+
+  const scrollRef1 = useRef<HTMLDivElement>(null);
+  const scrollRef2 = useRef<HTMLDivElement>(null);
+  const scrollRef3 = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = (ref: React.RefObject<HTMLDivElement | null>) => {
+    ref.current?.scrollBy({
+      left: -360,
       behavior: "smooth",
     });
   };
 
-  const scrollRight = () => {
-    scrollRef.current?.scrollBy({
+  const scrollRight = (ref: React.RefObject<HTMLDivElement | null>) => {
+    ref.current?.scrollBy({
       left: 360,
       behavior: "smooth",
     });
@@ -47,7 +58,7 @@ const Home = () => {
           {/* Hero Section: Recipe of the Day */}
           <Hero recipes={recipeData} />
           {/* Quick Filter Categories */}
-          <section className="space-y-6">
+          {/* <section className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="font-display text-2xl font-bold tracking-tight">
                 Explore Categories
@@ -82,7 +93,7 @@ const Home = () => {
                 Quick Meals
               </button>
             </div>
-          </section>
+          </section> */}
 
           {/* Popular Recipes Carousel */}
           <section className="space-y-8">
@@ -92,21 +103,77 @@ const Home = () => {
               </h3>
               <div className="flex gap-2">
                 <button
-                  onClick={scrollLeft}
-                  title='Prev' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] hover:text-white transition-all">
+                  onClick={() => scrollLeft(scrollRef1)}
+                  title='Prev' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
                   <ArrowLeft />
                 </button>
                 <button
-                  onClick={scrollRight}
-                  title='Next' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] hover:text-white transition-all">
+                  onClick={() => scrollRight(scrollRef1)}
+                  title='Next' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
                   <ArrowRight />
                 </button>
               </div>
             </div>
             <div
-              ref={scrollRef}
+              ref={scrollRef1}
               className="flex gap-8 overflow-x-auto no-scrollbar pb-6 px-2">
               {recipeData.slice(0, 10).map((recipe) => (
+                <RecipeCard key={recipe.id} recipe={recipe} />
+              ))}
+            </div>
+          </section>
+
+          {/* Easy to cooking */}
+          <section className="space-y-8">
+            <div className="flex items-center justify-between px-2">
+              <h3 className="font-display text-3xl font-bold tracking-tight">
+                Easy to make Recipes
+              </h3>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => scrollLeft(scrollRef2)}
+                  title='Prev' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
+                  <ArrowLeft />
+                </button>
+                <button
+                  onClick={() => scrollRight(scrollRef2)}
+                  title='Next' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
+                  <ArrowRight />
+                </button>
+              </div>
+            </div>
+            <div
+              ref={scrollRef2}
+              className="flex gap-8 overflow-x-auto no-scrollbar pb-6 px-2">
+              {easyRecipes.map((recipe) => (
+                <RecipeCard key={recipe.id} recipe={recipe} />
+              ))}
+            </div>
+          </section>
+
+          {/* Low Calories */}
+          <section className="space-y-8">
+            <div className="flex items-center justify-between px-2">
+              <h3 className="font-display text-3xl font-bold tracking-tight">
+                Recipes with low Calories
+              </h3>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => scrollLeft(scrollRef3)}
+                  title='Prev' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
+                  <ArrowLeft />
+                </button>
+                <button
+                  onClick={() => scrollRight(scrollRef3)}
+                  title='Next' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
+                  <ArrowRight />
+                </button>
+              </div>
+            </div>
+            <div
+              ref={scrollRef3}
+              className="flex gap-8 overflow-x-auto no-scrollbar pb-6 px-2">
+              {lowCaloryRecipes.map((recipe) => (
                 <RecipeCard key={recipe.id} recipe={recipe} />
               ))}
             </div>

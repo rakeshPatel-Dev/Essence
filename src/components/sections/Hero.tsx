@@ -1,36 +1,51 @@
 import {
   ArrowRight,
   BadgeCheck,
-  Bookmark,
   Clock,
   Flame
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { RecipeCardProps } from "../RecipeCard";
 import { FaStar } from "react-icons/fa";
+import { BookmarkRecipe } from "../BookmarkRecipe";
 
 interface HeroProps {
-  recipes: RecipeCardProps["recipe"];
+  recipes: RecipeCardProps["recipe"][];
 }
 
 const AUTO_SLIDE_MS = 10000;
+const POPULAR_THRESHOLD = 70;
 
 const Hero = ({ recipes }: HeroProps) => {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  const hasRecipes = recipes.length > 0;
-  const recipe = hasRecipes ? recipes[index] : null;
+  /** ✅ Popular recipes (single source of truth) */
+  const popularRecipes = useMemo(
+    () => recipes.filter(r => r.reviewCount >= POPULAR_THRESHOLD),
+    [recipes]
+  );
 
+  const hasRecipes = popularRecipes.length > 0;
+  const recipe = hasRecipes ? popularRecipes[index] : null;
+
+  /** ✅ Reset index if list shrinks */
+  useEffect(() => {
+    if (index >= popularRecipes.length) {
+      setIndex(0);
+    }
+  }, [popularRecipes.length, index]);
+
+  /** ✅ Auto slide */
   useEffect(() => {
     if (!hasRecipes || paused) return;
 
     const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % recipes.length);
+      setIndex(prev => (prev + 1) % popularRecipes.length);
     }, AUTO_SLIDE_MS);
 
     return () => clearInterval(timer);
-  }, [recipes.length, paused, hasRecipes]);
+  }, [paused, hasRecipes, popularRecipes.length]);
 
   if (!recipe) return null;
 
@@ -54,7 +69,7 @@ const Hero = ({ recipes }: HeroProps) => {
       {/* Content */}
       <div className="relative z-10 p-8 md:p-12 max-w-2xl text-white">
         <span className="inline-flex items-center gap-2 mb-4 px-4 py-1 text-xs font-bold uppercase tracking-widest rounded-full bg-[#A88E6A]/15 border border-[#A88E6A]/30">
-          <BadgeCheck size={16} /> Chef’s Choice
+          <BadgeCheck size={16} /> Chef's Choice
         </span>
 
         <h1 className="text-4xl md:text-6xl font-black leading-tight mb-4">
@@ -83,24 +98,19 @@ const Hero = ({ recipes }: HeroProps) => {
             View Recipe <ArrowRight />
           </button>
 
-          <button
-            title="Bookmark"
-            className="bg-white/10 hover:bg-white/20 border border-white/20 h-12 px-4 rounded-xl transition"
-          >
-            <Bookmark />
-          </button>
+          <BookmarkRecipe />
         </div>
       </div>
 
       {/* Rating Badge */}
-      <div className="absolute top-4 right-4 z-10 flex  items-center gap-2 bg-white/10 backdrop-blur px-3 py-2 rounded-xl text-sm font-semibold text-white">
+      <div className="absolute top-4 right-4 z-10 flex items-center gap-2 bg-white/10 backdrop-blur px-3 py-2 rounded-xl text-sm font-semibold text-white">
         <FaStar className="text-yellow-400" />
         {recipe.rating} · {recipe.reviewCount} likes
       </div>
 
       {/* Dots */}
       <div className="absolute hidden sm:flex bottom-6 left-1/2 -translate-x-1/2 gap-2 z-10">
-        {recipes.map((_, i) => (
+        {popularRecipes.map((_, i) => (
           <button
             title="dots"
             key={i}

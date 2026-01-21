@@ -9,29 +9,38 @@ import SelectDifficulty from "@/components/recipeSelection/SelectDifficulty"
 import SelectCookingTime from "@/components/recipeSelection/SelectCookingTime"
 import { SelectCalories } from "@/components/recipeSelection/SelectCalories"
 import { RecipeSort } from "@/components/recipeSelection/RecipeSort"
-import { RecipePagination } from "@/components/recipeSelection/Pagination"
+// import { RecipePagination } from "@/components/recipeSelection/Pagination"
 
 const Recipes = () => {
   const context = useContext(RecipeDataContext)
   const [openFilters, setOpenFilters] = useState(false)
   const scrollContainerRef = useRef(null)
+  const [loadMore, setLoadMore] = useState(6);
+  const [searchQuery, setSearchQuery] = useState("");
 
+  // Data fetching
   if (!context) {
     throw new Error("Recipes must be wrapped in RecipeDataProvider")
   }
-
-  const [searchQuery, setSearchQuery] = useState("");
-
-
-
   const { recipeData, loading, error } = context
 
+  // Error and loading state
   if (loading) return <p className="text-center mt-20">Loading recipes...</p>
   if (error) return <p className="text-center mt-20 text-red-500">{error}</p>
 
   const filteredRecipe = recipeData.filter(r =>
-    r.name.toLowerCase().includes(searchQuery.toLowerCase())
+    r.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    r.ingredients.some(ingredient => ingredient.toLowerCase().includes(searchQuery.toLowerCase())) ||
+    r.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
   );
+
+  // Load more button
+  const handleLoadMore = () => {
+    setLoadMore(prev => prev + 6);
+  }
+
+  // Displaying Count number
+  const displayCount = Math.min(loadMore, filteredRecipe.length);
 
   return (
     <div className="flex flex-col bg-[#f4f2f1] dark:bg-[#191b1f] text-slate-900 dark:text-slate-100">
@@ -39,9 +48,10 @@ const Recipes = () => {
       <header className="shrink-0 bg-[#f4f2f1] dark:bg-[#191b1f] border-b border-black/5 dark:border-white/10 z-30">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex flex-col items-center">
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="font-display text-4xl md:text-5xl font-bold">
               All Recipes
             </h2>
+            <p className="text-lg text-neutral-600 p-4 mb-2 max-w-2xl text-center">Browse our extensive recipe collection! Find inspiration for any meal, skill level, or craving – start cooking today!</p>
 
             <div className="w-full max-w-2xl relative">
               <div className="absolute inset-y-0 left-5 flex items-center text-gray-400">
@@ -177,7 +187,7 @@ const Recipes = () => {
               <p className="text-sm text-gray-500">
                 Showing{" "}
                 <span className="font-bold text-gray-900 dark:text-white">
-                  {recipeData.length}
+                  {/* {filteredRecipe.length} {loadMore} */} {displayCount}
                 </span>{" "}
                 results
               </p>
@@ -196,21 +206,23 @@ const Recipes = () => {
               className="flex-1 min-h-0 overflow-y-auto py-6"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                {filteredRecipe.slice(0, 6).map((recipe) => (
+                {filteredRecipe.slice(0, loadMore).map((recipe) => (
                   <RecipeCard key={recipe.id} recipe={recipe} />
                 ))}
               </div>
 
               {/* PAGINATION AT BOTTOM OF SCROLL */}
               <div className="mt-12 flex flex-col items-center pb-6">
-                <button className="px-12 py-4 bg-[#2c6e72] text-white rounded-full font-bold shadow-lg hover:opacity-90 transition-opacity flex items-center gap-3">
+                <button
+                  onClick={handleLoadMore}
+                  className="px-12 py-4 cursor-pointer hover:scale-105 active:scale-95 bg-[#2c6e72] text-white rounded-full font-bold shadow-lg hover:opacity-90 transition-all flex items-center gap-3">
                   Discover More Recipes
                   <ChevronDown />
                 </button>
 
-                <div className="mt-8">
+                {/* <div className="mt-8">
                   <RecipePagination />
-                </div>
+                </div> */}
               </div>
             </div>
           </section>

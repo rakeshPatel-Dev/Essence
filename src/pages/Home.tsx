@@ -7,6 +7,7 @@ import "../index.css";
 import { RecipeDataContext } from "../context/RecipeDataProvider";
 import RecipeCard from "../components/RecipeCard";
 import CTA from "../components/sections/CTA";
+import { Link } from "react-router-dom";
 
 
 
@@ -58,42 +59,6 @@ const Home = () => {
           {/* Hero Section: Recipe of the Day */}
           <Hero recipes={recipeData} />
           {/* Quick Filter Categories */}
-          {/* <section className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h3 className="font-display text-2xl font-bold tracking-tight">
-                Explore Categories
-              </h3>
-              <a
-                className="text-sm font-semibold text-[#2c6e72] hover:underline underline-offset-4"
-                href="#"
-              >
-                View All
-              </a>
-            </div>
-            <div className="flex gap-4 overflow-x-auto no-scrollbar pb-2">
-              <button className="whitespace-nowrap rounded-full bg-[#2c6e72] text-white px-6 py-2.5 text-sm font-bold shadow-lg shadow-[#2c6e72]/20">
-                All Cuisines
-              </button>
-              <button className="whitespace-nowrap rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72]/10 transition-colors px-6 py-2.5 text-sm font-medium border border-transparent dark:border-slate-700">
-                Italian
-              </button>
-              <button className="whitespace-nowrap rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72]/10 transition-colors px-6 py-2.5 text-sm font-medium border border-transparent dark:border-slate-700">
-                French
-              </button>
-              <button className="whitespace-nowrap rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72]/10 transition-colors px-6 py-2.5 text-sm font-medium border border-transparent dark:border-slate-700">
-                Japanese
-              </button>
-              <button className="whitespace-nowrap rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72]/10 transition-colors px-6 py-2.5 text-sm font-medium border border-transparent dark:border-slate-700">
-                Seafoody
-              </button>
-              <button className="whitespace-nowrap rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72]/10 transition-colors px-6 py-2.5 text-sm font-medium border border-transparent dark:border-slate-700">
-                Vegan
-              </button>
-              <button className="whitespace-nowrap rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72]/10 transition-colors px-6 py-2.5 text-sm font-medium border border-transparent dark:border-slate-700">
-                Quick Meals
-              </button>
-            </div>
-          </section> */}
 
           {/* Popular Recipes Carousel */}
           <section className="space-y-8">
@@ -172,12 +137,20 @@ const Home = () => {
             </div>
             <div
               ref={scrollRef3}
-              className="flex gap-8 overflow-x-auto no-scrollbar pb-6 px-2">
+              className="flex gap-8 overflow-x-auto no-scrollbar px-2">
               {lowCaloryRecipes.map((recipe) => (
                 <RecipeCard key={recipe.id} recipe={recipe} />
               ))}
             </div>
           </section>
+
+          <div className=" max-w-3xl mx-auto p-2 text-center space-y-6">
+            <h3 className="font-bold text-4xl">Want to cook more!</h3>
+            <p className=" text-neutral-600 text-lg">Discover a wider range of culinary inspiration with our extensive recipe catalog – explore and start your cooking journey today!</p>
+            <Link to="/all-recipes">
+              <button className=" bg-[#2c6e72] text-white px-8 py-4 rounded-full font-bold hover:bg-[#2c6e72]/90 transition-all hover:scale-105 active:scale-95 cursor-pointer duration-150">Explore all recipes</button>
+            </Link>
+          </div>
 
           {/* Newsletter / CTA Section */}
           <CTA />

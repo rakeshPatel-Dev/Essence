@@ -7,7 +7,11 @@ import {
 import { useState } from "react"
 import { toast } from "sonner"
 
-export function BookmarkRecipe() {
+interface LabelProps {
+  text?: string
+}
+
+export function BookmarkRecipe({ text }: LabelProps) {
 
   const [isBookmarked, setIsBookmarked] = useState("")
 
@@ -29,6 +33,7 @@ export function BookmarkRecipe() {
         className="data-[state=on]:bg-neutral-600/60 bg-neutral-600/50 backdrop-blur-xl data-[state=on]:*:[svg]:fill-green-600 data-[state=on]:*:[svg]:stroke-green-600"
       >
         <BookmarkIcon />
+        {text}
       </ToggleGroupItem>
     </ToggleGroup>
   )

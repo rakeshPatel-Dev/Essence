@@ -4,15 +4,14 @@ import { Link } from 'react-router-dom'
 const Header = () => {
 
   const headerData = [
-
     { label: "All Recipes", href: "/all-recipes" },
     { label: "Categories", href: "/categories" },
     { label: "My Kitchen", href: "/my-kitchen" },
   ]
 
   return (
-    <div className='bg-[#f4f2f1] dark:bg-[#191b1f] font-sans text-slate-900 dark:text-slate-100 transition-colors duration-300'>
-      <nav className="sticky top-0 z-50 border-b border-[#2c6e72]/10 bg-[#f4f2f1]/80 dark:bg-[#191b1f]/80 backdrop-blur-md">
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#2c6e72]/10 bg-[#f4f2f1]/80 dark:bg-[#191b1f]/80 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-12">
@@ -39,8 +38,7 @@ const Header = () => {
               </div>
             </div>
             <div className="flex items-center gap-6">
-              <div className="flex items-center gap-4  pl-6">
-
+              <div className="flex items-center gap-4 pl-6">
                 <Link to="/profile">
                   <button className="flex items-center cursor-pointer gap-2">
                     <div
@@ -61,7 +59,10 @@ const Header = () => {
           </div>
         </div>
       </nav>
-    </div>
+
+      {/* Add padding to prevent content from hiding under fixed nav */}
+      <div className="pt-15" />
+    </>
   )
 }
 

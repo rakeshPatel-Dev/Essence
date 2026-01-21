@@ -8,6 +8,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { RecipeCardProps } from "../RecipeCard";
 import { FaStar } from "react-icons/fa";
 import { BookmarkRecipe } from "../BookmarkRecipe";
+import { Link } from "react-router-dom";
 
 interface HeroProps {
   recipes: RecipeCardProps["recipe"][];
@@ -28,6 +29,8 @@ const Hero = ({ recipes }: HeroProps) => {
 
   const hasRecipes = popularRecipes.length > 0;
   const recipe = hasRecipes ? popularRecipes[index] : null;
+
+  const recipeSlug = (recipe?.name)?.split(" ").join("-");
 
   /** ✅ Reset index if list shrinks */
   useEffect(() => {
@@ -94,11 +97,14 @@ const Hero = ({ recipes }: HeroProps) => {
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="bg-[#2c6e72] hover:bg-[#245c5f] px-8 h-12 rounded-xl font-bold flex items-center gap-2 transition">
-            View Recipe <ArrowRight />
-          </button>
-
-          <BookmarkRecipe />
+          {/* View recipe */}
+          <Link to={`/recipe/${recipeSlug}`}>
+            <button className="bg-[#2c6e72] cursor-pointer active:scale-95  hover:bg-[#245c5f] px-8 h-12 rounded-xl font-bold flex items-center gap-2 transition-all">
+              View Recipe <ArrowRight />
+            </button>
+          </Link>
+          {/* Bookmark recipe */}
+          <BookmarkRecipe text="Save the Choice" />
         </div>
       </div>
 

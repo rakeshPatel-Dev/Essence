@@ -1,6 +1,7 @@
 import { Clock, Flame } from "lucide-react";
 import { FaStar } from "react-icons/fa";
 import { BookmarkRecipe } from "./BookmarkRecipe";
+import { Link } from "react-router-dom";
 
 export interface RecipeCardProps {
   recipe: {
@@ -17,6 +18,9 @@ export interface RecipeCardProps {
 }
 
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
+
+  const recipeSlug = (recipe.name).split(" ").join("-");
+  // console.log(recipeSlug);
 
   return (
     <div className=" min-w-70 group space-y-4">
@@ -49,7 +53,9 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
         </div>
 
         <h4 className="font-display text-xl cursor-pointer font-bold transition-all group-hover:text-[#2c6e72]">
-          {recipe.name}
+          <Link to={`/recipe/${recipeSlug}`}>
+            {recipe.name}
+          </Link>
         </h4>
 
         {/* Tags */}

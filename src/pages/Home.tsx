@@ -69,12 +69,12 @@ const Home = () => {
               <div className="flex gap-2">
                 <button
                   onClick={() => scrollLeft(scrollRef1)}
-                  title='Prev' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
+                  title='Prev' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#eecd2b] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
                   <ArrowLeft />
                 </button>
                 <button
                   onClick={() => scrollRight(scrollRef1)}
-                  title='Next' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
+                  title='Next' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#eecd2b] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
                   <ArrowRight />
                 </button>
               </div>
@@ -97,12 +97,12 @@ const Home = () => {
               <div className="flex gap-2">
                 <button
                   onClick={() => scrollLeft(scrollRef2)}
-                  title='Prev' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
+                  title='Prev' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#eecd2b] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
                   <ArrowLeft />
                 </button>
                 <button
                   onClick={() => scrollRight(scrollRef2)}
-                  title='Next' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
+                  title='Next' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#eecd2b] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
                   <ArrowRight />
                 </button>
               </div>
@@ -125,12 +125,12 @@ const Home = () => {
               <div className="flex gap-2">
                 <button
                   onClick={() => scrollLeft(scrollRef3)}
-                  title='Prev' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
+                  title='Prev' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#eecd2b] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
                   <ArrowLeft />
                 </button>
                 <button
                   onClick={() => scrollRight(scrollRef3)}
-                  title='Next' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#2c6e72] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
+                  title='Next' className="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-[#2C2F33] hover:bg-[#eecd2b] cursor-pointer active:scale-95 hover:scale-105 hover:text-white transition-all">
                   <ArrowRight />
                 </button>
               </div>
@@ -148,7 +148,7 @@ const Home = () => {
             <h3 className="font-bold text-4xl">Want to cook more!</h3>
             <p className=" text-neutral-600 text-lg">Discover a wider range of culinary inspiration with our extensive recipe catalog – explore and start your cooking journey today!</p>
             <Link to="/all-recipes">
-              <button className=" bg-[#2c6e72] text-white px-8 py-4 rounded-full font-bold hover:bg-[#2c6e72]/90 transition-all hover:scale-105 active:scale-95 cursor-pointer duration-150">Explore all recipes</button>
+              <button className=" bg-[#eecd2b] text-white px-8 py-4 rounded-full font-bold hover:bg-[#eecd2b]/90 transition-all hover:scale-105 active:scale-95 cursor-pointer duration-150">Explore all recipes</button>
             </Link>
           </div>
 

@@ -25,7 +25,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
   return (
     <div className=" min-w-70 group space-y-4">
       <div className="relative aspect-4/5 overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800">
-        {/* <button title="Bookmark" className="size-10 absolute z-10 right-3 top-3 rounded-full bg-white/50 dark:bg-[#191b1f]/50 backdrop-blur-md flex items-center justify-center text-white hover:text-[#2c6e72] cursor-pointer transition-all">
+        {/* <button title="Bookmark" className="size-10 absolute z-10 right-3 top-3 rounded-full bg-white/50 dark:bg-[#191b1f]/50 backdrop-blur-md flex items-center justify-center text-white hover:text-[#eecd2b] cursor-pointer transition-all">
 
         </button> */}
 
@@ -42,7 +42,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
 
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-bold uppercase text-[#2c6e72]">
+          <span className="text-xs font-bold uppercase text-[#eecd2b]">
             {recipe.cuisine}
           </span>
           <div className="flex items-center gap-1 text-sm font-medium">
@@ -52,7 +52,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           </div>
         </div>
 
-        <h4 className="font-display text-xl cursor-pointer font-bold transition-all group-hover:text-[#2c6e72]">
+        <h4 className="font-display text-xl cursor-pointer font-bold transition-all group-hover:text-[#eecd2b]">
           <Link to={`/recipe/${recipeSlug}`}>
             {recipe.name}
           </Link>

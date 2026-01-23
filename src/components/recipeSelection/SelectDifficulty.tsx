@@ -24,8 +24,8 @@ const SelectDifficulty = () => {
             key={level}
             className={`cursor-pointer rounded-full border px-4 py-1.5 text-xs font-semibold transition
           ${difficulty === level
-                ? "border-[#2c6e72] bg-[#2c6e72]/10 text-[#2c6e72]"
-                : "border-gray-300 hover:border-[#2c6e72]"
+                ? "border-[#eecd2b] bg-[#eecd2b]/10 text-[#eecd2b]"
+                : "border-gray-300 hover:border-[#eecd2b]"
               }`}
           >
             <RadioGroupItem value={level} className="hidden" />

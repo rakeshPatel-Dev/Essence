@@ -64,7 +64,7 @@ const Recipes = () => {
                 }}
                 type="text"
                 placeholder="Search by recipe name, ingredient, or keyword..."
-                className="w-full h-14 bg-white dark:bg-[#2C2F33] rounded-full pl-14 pr-6 text-lg focus:ring-2 focus:ring-[#2c6e72] shadow outline-none"
+                className="w-full h-14 bg-white dark:bg-[#2C2F33] rounded-full pl-14 pr-6 text-lg focus:ring-2 focus:ring-[#eecd2b] shadow outline-none"
               />
             </div>
           </div>
@@ -215,7 +215,7 @@ const Recipes = () => {
               <div className="mt-12 flex flex-col items-center pb-6">
                 <button
                   onClick={handleLoadMore}
-                  className="px-12 py-4 cursor-pointer hover:scale-105 active:scale-95 bg-[#2c6e72] text-white rounded-full font-bold shadow-lg hover:opacity-90 transition-all flex items-center gap-3">
+                  className="px-12 py-4 cursor-pointer hover:scale-105 active:scale-95 bg-[#eecd2b] text-white rounded-full font-bold shadow-lg hover:opacity-90 transition-all flex items-center gap-3">
                   Discover More Recipes
                   <ChevronDown />
                 </button>
@@ -232,7 +232,7 @@ const Recipes = () => {
       {/* ================= MOBILE FILTER BUTTON ================= */}
       <button
         onClick={() => setOpenFilters(!openFilters)}
-        className="lg:hidden fixed bottom-6 right-6 z-50 bg-[#2c6e72] text-white px-5 py-3 rounded-full shadow-xl flex items-center gap-2 font-bold hover:opacity-90 transition-opacity"
+        className="lg:hidden fixed bottom-6 right-6 z-50 bg-[#eecd2b] text-white px-5 py-3 rounded-full shadow-xl flex items-center gap-2 font-bold hover:opacity-90 transition-opacity"
       >
         <SlidersHorizontal size={18} />
         Filters

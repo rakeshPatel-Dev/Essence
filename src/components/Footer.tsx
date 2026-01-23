@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             <div className="col-span-2 space-y-6">
               <div className="flex items-center gap-3">
-                <div className="bg-[#2c6e72] p-1 rounded-lg">
+                <div className="bg-[#eecd2b] p-1 rounded-lg">
                   <ChefHat />
                 </div>
                 <h2 className="font-display text-xl font-bold tracking-tight">
@@ -23,22 +23,22 @@ const Footer = () => {
               <h4 className="font-bold">Explore</h4>
               <ul className="space-y-2 text-slate-500 dark:text-slate-400 text-sm">
                 <li>
-                  <a className="hover:text-[#2c6e72] transition-colors" href="#">
+                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
                     Featured Chefs
                   </a>
                 </li>
                 <li>
-                  <a className="hover:text-[#2c6e72] transition-colors" href="#">
+                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
                     Seasonal Guides
                   </a>
                 </li>
                 <li>
-                  <a className="hover:text-[#2c6e72] transition-colors" href="#">
+                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
                     Cooking Techniques
                   </a>
                 </li>
                 <li>
-                  <a className="hover:text-[#2c6e72] transition-colors" href="#">
+                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
                     Wine Pairings
                   </a>
                 </li>
@@ -48,22 +48,22 @@ const Footer = () => {
               <h4 className="font-bold">Company</h4>
               <ul className="space-y-2 text-slate-500 dark:text-slate-400 text-sm">
                 <li>
-                  <a className="hover:text-[#2c6e72] transition-colors" href="#">
+                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
                     About Us
                   </a>
                 </li>
                 <li>
-                  <a className="hover:text-[#2c6e72] transition-colors" href="#">
+                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a className="hover:text-[#2c6e72] transition-colors" href="#">
+                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
                     Terms of Service
                   </a>
                 </li>
                 <li>
-                  <a className="hover:text-[#2c6e72] transition-colors" href="#">
+                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
                     Contact
                   </a>
                 </li>
@@ -79,18 +79,18 @@ const Footer = () => {
                   rel='noopener noreferer'
                   title='Developer link'
                   href="https://rakeshthedev.vercel.app"
-                  className=' hover:underline decoration-2 hover:text-[#2c6e72] transition-all underline-offset-2  '
+                  className=' hover:underline decoration-2 hover:text-[#eecd2b] transition-all underline-offset-2  '
                 >Rakesh Patel</a>
               </p>
             </div>
             <div className="flex gap-6">
-              <a className="hover:text-[#2c6e72]" href="#">
+              <a className="hover:text-[#eecd2b]" href="#">
                 Instagram
               </a>
-              <a className="hover:text-[#2c6e72]" href="#">
+              <a className="hover:text-[#eecd2b]" href="#">
                 Pinterest
               </a>
-              <a className="hover:text-[#2c6e72]" href="#">
+              <a className="hover:text-[#eecd2b]" href="#">
                 Twitter
               </a>
             </div>

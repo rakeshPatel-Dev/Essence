@@ -16,10 +16,10 @@ export function SelectCalories() {
         onValueChange={(value) => setRange(value as [number, number])
         }
         className="
-        **:[[role=slider]]:border-[#2c6e72]
-        **:[[role=slider]]:bg-[#2c6e72]
-        **:[[role=slider]]:ring-[#2c6e72]
-        [&_.bg-primary]:bg-[#2c6e72]
+        **:[[role=slider]]:border-[#eecd2b]
+        **:[[role=slider]]:bg-[#eecd2b]
+        **:[[role=slider]]:ring-[#eecd2b]
+        [&_.bg-primary]:bg-[#eecd2b]
       "
       />
       <div className="mt-3 flex justify-between text-xs font-semibold text-gray-500">

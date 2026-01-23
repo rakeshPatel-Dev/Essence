@@ -9,7 +9,7 @@ const Page404 = () => {
 
           {/* HEADER */}
           <div className="space-y-4">
-            <span className="text-[#2c6e72] font-bold tracking-[0.25em] uppercase text-xs">
+            <span className="text-[#eecd2b] font-bold tracking-[0.25em] uppercase text-xs">
               Error 404
             </span>
 
@@ -21,11 +21,11 @@ const Page404 = () => {
           {/* ICON VISUAL */}
           <div className="relative flex items-center justify-center">
             {/* Soft halo */}
-            <div className="absolute inset-0 rounded-full bg-[#2c6e72]/10 dark:bg-[#2c6e72]/20 blur-3xl" />
+            <div className="absolute inset-0 rounded-full bg-[#eecd2b]/10 dark:bg-[#eecd2b]/20 blur-3xl" />
 
             {/* Icon container */}
-            <div className="relative z-10 size-40 sm:size-48 rounded-full border border-[#eaf0ed] dark:border-[#2c6e72]/20 flex items-center justify-center shadow-2xl bg-white/60 dark:bg-[#1d1615]/60 backdrop-blur">
-              <UtensilsCrossed className="size-16 sm:size-20 text-[#2c6e72]" />
+            <div className="relative z-10 size-40 sm:size-48 rounded-full border border-[#eaf0ed] dark:border-[#eecd2b]/20 flex items-center justify-center shadow-2xl bg-white/60 dark:bg-[#1d1615]/60 backdrop-blur">
+              <UtensilsCrossed className="size-16 sm:size-20 text-[#eecd2b]" />
             </div>
           </div>
 
@@ -41,7 +41,7 @@ const Page404 = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
               <Link
                 to="/"
-                className="px-8 py-4 bg-[#2c6e72] text-white text-sm font-bold rounded-xl shadow-xl shadow-[#2c6e72]/25 hover:scale-[1.03] transition-all flex items-center gap-2"
+                className="px-8 py-4 bg-[#eecd2b] text-white text-sm font-bold rounded-xl shadow-xl shadow-[#eecd2b]/25 hover:scale-[1.03] transition-all flex items-center gap-2"
               >
                 <ArrowLeft size={18} />
                 Back to Home
@@ -49,16 +49,16 @@ const Page404 = () => {
             </div>
 
             {/* SECONDARY LINKS */}
-            <div className="flex items-center justify-center gap-8 pt-6 border-t border-[#eaf0ed] dark:border-[#2c6e72]/15">
+            <div className="flex items-center justify-center gap-8 pt-6 border-t border-[#eaf0ed] dark:border-[#eecd2b]/15">
               <Link
                 to="/all-recipes"
-                className="text-sm font-bold text-[#2c6e72] hover:underline"
+                className="text-sm font-bold text-[#eecd2b] hover:underline"
               >
                 Taste Recipes
               </Link>
               <Link
                 to="/my-kitchen"
-                className="text-sm font-bold text-[#2c6e72] hover:underline"
+                className="text-sm font-bold text-[#eecd2b] hover:underline"
               >
                 My Kitchen
               </Link>

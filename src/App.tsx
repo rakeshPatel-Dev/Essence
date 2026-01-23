@@ -8,6 +8,7 @@ import RecipeDetails from "./pages/RecipeDetails"
 import Profile from "./pages/Profile"
 import Page404 from "./pages/Page404"
 import { Toaster } from "sonner"
+import EditProfile from "./pages/EditProfile"
 
 const App = () => {
   return (
@@ -19,7 +20,8 @@ const App = () => {
         <Route path="/all-recipes" element={<Recipes />} />
         <Route path="/my-kitchen" element={<MyKitchen />} />
         <Route path="/recipe/:recipeSlug" element={<RecipeDetails />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/user/setting" element={<EditProfile />} />
+        <Route path="/user/profile" element={<Profile />} />
         <Route path="*" element={<Page404 />} />
 
 

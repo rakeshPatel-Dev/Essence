@@ -40,7 +40,18 @@
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0)}
+  --sidebar-ring: oklch(0.708 0 0);
+  --text-primary: #f5f5f5;
+  --text-secondary: #d4d4d4;
+  --text-tertiary: #a3a3a3;
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #171717;
+  --bg-tertiary: #262626;
+  --bg-quaternary: #313131;
+  --bg-button: #313131;
+  --border-primary: hsla(0, 0%, 100%, 0.12);
+  --border-secondary: hsla(0, 0%, 100%, 0.08);
+  --button-shadow: 0px -1px 0px 0px hsla(0, 0%, 100%, 0.04), 0px 0px 0px 1px hsla(0, 0%, 100%, 0.12), 0px 0px 1px 0px rgba(0, 0, 0, 0.04), 0px 2px 2px 0px rgba(0, 0, 0, 0.04), 0px 4px 2px 0px rgba(0, 0, 0, 0.04), 0px 6px 3px 0px rgba(0, 0, 0, 0.04)}
 
 .primary {
   color: var(--primary);
@@ -100,7 +111,18 @@
   --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);}
+  --color-sidebar-ring: var(--sidebar-ring);
+  --button-shadow: var(----button-shadow);
+  --color-border-secondary: var(----border-secondary);
+  --color-border-primary: var(----border-primary);
+  --color-bg-button: var(----bg-button);
+  --color-bg-quaternary: var(----bg-quaternary);
+  --color-bg-tertiary: var(----bg-tertiary);
+  --color-bg-secondary: var(----bg-secondary);
+  --color-bg-primary: var(----bg-primary);
+  --color-text-tertiary: var(----text-tertiary);
+  --color-text-secondary: var(----text-secondary);
+  --color-text-primary: var(----text-primary);}
 
 .dark {
   --background: oklch(0.145 0 0);

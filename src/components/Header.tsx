@@ -11,13 +11,13 @@ const Header = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#2c6e72]/10 bg-[#f4f2f1]/80 dark:bg-[#191b1f]/80 backdrop-blur-md">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#eecd2b]/10 bg-[#f4f2f1]/80 dark:bg-[#191b1f]/80 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-12">
               <Link to="/">
                 <div className="flex items-center gap-3 cursor-pointer">
-                  <div className="bg-[#2c6e72] p-1.5 rounded-lg flex items-center justify-center">
+                  <div className="bg-[#eecd2b] p-1.5 rounded-lg flex items-center justify-center">
                     <ChefHat />
                   </div>
                   <h1 className="font-display text-xl font-bold tracking-tight">
@@ -30,7 +30,7 @@ const Header = () => {
                   <Link
                     to={item.href}
                     key={idx}
-                    className="text-sm font-medium hover:text-[#2c6e72] transition-colors"
+                    className="text-sm font-medium hover:text-[#eecd2b] transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -39,7 +39,7 @@ const Header = () => {
             </div>
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-4 pl-6">
-                <Link to="/profile">
+                <Link to="/user/profile">
                   <button className="flex items-center cursor-pointer gap-2">
                     <div
                       className="size-8 rounded-full bg-cover bg-center"

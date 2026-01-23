@@ -106,7 +106,7 @@ const RecipeDetails = () => {
                   {recipe.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 rounded-full bg-[#2c6e72]/10 text-[#2c6e72] text-xs font-bold uppercase tracking-wider"
+                      className="px-3 py-1 rounded-full bg-[#eecd2b]/10 text-[#eecd2b] text-xs font-bold uppercase tracking-wider"
                     >
                       {tag}
                     </span>
@@ -119,7 +119,7 @@ const RecipeDetails = () => {
             <div className="flex flex-wrap items-center gap-6 py-4 border-y border-[#e6e1df] dark:border-[#2d2422]">
               <div className="flex items-center gap-2">
                 <FaStar className="text-yellow-600" />
-                <span className="text-2xl font-black text-[#2c6e72]">
+                <span className="text-2xl font-black text-[#eecd2b]">
                   {recipe.rating?.toFixed(1) || "0.0"}
                 </span>
                 <span className="text-sm text-[#86675f]">
@@ -128,7 +128,7 @@ const RecipeDetails = () => {
               </div>
 
               <div className="flex flex-wrap gap-2">
-                <span className="flex items-center gap-1 px-3 py-1 rounded-full bg-[#2c6e72]/10 text-xs font-bold">
+                <span className="flex items-center gap-1 px-3 py-1 rounded-full bg-[#eecd2b]/10 text-xs font-bold">
                   <Gauge size={16} /> {recipe.difficulty}
                 </span>
                 <span className="flex items-center gap-1 px-3 py-1 rounded-full bg-[#f0ebea] dark:bg-[#2d2422] text-xs font-bold">
@@ -166,7 +166,7 @@ const RecipeDetails = () => {
               {recipe.instructions?.length > 0 ? (
                 recipe.instructions.map((step, i) => (
                   <div key={i} className="flex items-start gap-6">
-                    <span className="size-10 flex items-center justify-center rounded-full bg-[#2c6e72] text-white font-black">
+                    <span className="size-10 flex items-center justify-center rounded-full bg-[#eecd2b] text-white font-black">
                       {i + 1}
                     </span>
                     <p className="text-lg leading-relaxed">{step}</p>
@@ -230,7 +230,7 @@ interface InfoCardProps {
 
 const InfoCard = ({ icon, label, value }: InfoCardProps) => (
   <div className="flex flex-col items-center justify-center p-4 rounded-xl bg-[#f4f2f1] dark:bg-[#2d2422] border">
-    <div className="text-[#2c6e72] mb-1">{icon}</div>
+    <div className="text-[#eecd2b] mb-1">{icon}</div>
     <span className="text-[10px] font-bold uppercase tracking-widest text-[#86675f]">
       {label}
     </span>

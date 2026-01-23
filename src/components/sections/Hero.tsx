@@ -99,7 +99,7 @@ const Hero = ({ recipes }: HeroProps) => {
         <div className="flex items-center gap-4">
           {/* View recipe */}
           <Link to={`/recipe/${recipeSlug}`}>
-            <button className="bg-[#2c6e72] cursor-pointer active:scale-95  hover:bg-[#245c5f] px-8 h-12 rounded-xl font-bold flex items-center gap-2 transition-all">
+            <button className="bg-[#eecd2b] cursor-pointer active:scale-95  hover:bg-[#245c5f] px-8 h-12 rounded-xl font-bold flex items-center gap-2 transition-all">
               View Recipe <ArrowRight />
             </button>
           </Link>

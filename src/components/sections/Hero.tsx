@@ -104,7 +104,11 @@ const Hero = ({ recipes }: HeroProps) => {
             </button>
           </Link>
           {/* Bookmark recipe */}
-          <BookmarkRecipe text="Save the Choice" />
+          <BookmarkRecipe recipe={{
+            id: recipe.id,
+            title: recipe.name,
+            image: recipe.image
+          }} text="Save the Choice" />
         </div>
       </div>
 

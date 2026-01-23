@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export interface RecipeCardProps {
   recipe: {
-    id: number;
+    id: string;
     name: string;
     image: string;
     cuisine: string;
@@ -30,7 +30,11 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
         </button> */}
 
         <div className="absolute z-10 right-3 top-3">
-          <BookmarkRecipe />
+          <BookmarkRecipe recipe={{
+            id: recipe.id,
+            title: recipe.name,
+            image: recipe.image
+          }} />
         </div>
 
         <img

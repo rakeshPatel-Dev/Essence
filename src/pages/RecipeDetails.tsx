@@ -146,8 +146,8 @@ const RecipeDetails = () => {
                 <span className=" pr-4 font-bold text-[#86675f]">
                   Best for:
                 </span>
-                {recipe.mealType.map((type) => (
-                  <span className="font-mono border-l px-2 bg-muted text-muted-foreground">{type}</span>
+                {recipe.mealType.map((type, idx) => (
+                  <span key={idx + type} className="font-mono border-l px-2 bg-muted text-muted-foreground">{type}</span>
                 ))}
               </div>
             </div>
@@ -184,7 +184,14 @@ const RecipeDetails = () => {
 
               {/* ACTIONS */}
               <div className="p-6 rounded-xl bg-white dark:bg-[#1d1615] shadow-xl">
-                <BookmarkRecipe text="Save this Recipe" />
+                <BookmarkRecipe
+                  recipe={{
+                    id: recipe.id,
+                    title: recipe.name,
+                    image: recipe.image
+                  }}
+                  text="Save this Recipe"
+                />
 
                 <div className="grid grid-cols-2 gap-4 mt-4">
                   <PrintButton />

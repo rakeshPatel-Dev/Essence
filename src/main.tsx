@@ -4,15 +4,18 @@ import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import RecipeDataProvider from './context/RecipeDataProvider.tsx'
 import { ThemeProvider } from './context/ThemeContextProvider.tsx'
-import { AuthProvider } from './context/authContext.tsx'
+import { AuthProvider } from './context/AuthContext.tsx'
+import { BookmarkProvider } from './context/BookmarkContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <AuthProvider>
       <ThemeProvider>
-        <RecipeDataProvider>
-          <App />
-        </RecipeDataProvider>
+        <BookmarkProvider>
+          <RecipeDataProvider>
+            <App />
+          </RecipeDataProvider>
+        </BookmarkProvider>
       </ThemeProvider>
     </AuthProvider>
   </BrowserRouter >

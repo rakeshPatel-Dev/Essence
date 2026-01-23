@@ -1,3 +1,4 @@
+import { useAuth } from '@/context/AuthContext'
 import { ChefHat } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
@@ -8,6 +9,13 @@ const Header = () => {
     { label: "Categories", href: "/categories" },
     { label: "My Kitchen", href: "/my-kitchen" },
   ]
+  const { user } = useAuth();
+  console.log(user);
+
+  const userName = user?.displayName;
+  const userImage = user?.photoURL;
+
+  const placeholderChef = "https://imgs.search.brave.com/lhD1Ovn5gxDzqTfn5FvlGbLeUZDCYriKlDPh2PrfH7U/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTMx/NjY1OTM1L3ZlY3Rv/ci9jaGVmLWhhdC5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/d0M0U0M5eWtZMTBK/RDJxdzdzLVBBeUVv/ZHNUTktES3Z4T0g4/eEFuY3NKdz0"
 
   return (
     <>
@@ -45,12 +53,11 @@ const Header = () => {
                       className="size-8 rounded-full bg-cover bg-center"
                       data-alt="User profile avatar portrait"
                       style={{
-                        backgroundImage:
-                          'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCRw14TUKxb5rImR90Doh8et0b2uLr4z-RLudcrKixkvruEHu7NPL2km0T_PBKx4BO_rVfFyChmZuDgLjWJiLw1LRnUs2oxspNhhUKderDDFff2vbOqKjzxZZ8ty2udQowx5PGOf6M_xBKRa_kdvOp9pYC2dELelW9lSbiwHai-aSfnjD2wmsAhrE8prmKrczgNYej4auq4y3Dq675WFMcHQ7Y6VUz_Qat-e02ORmeq2n5zAXqJbmj1JmOM902KVDRG5lOClfZWTdiw")'
+                        backgroundImage: `url(${userImage || placeholderChef})`
                       }}
                     />
                     <span className="hidden lg:block text-sm font-medium">
-                      Rakesh Patel
+                      {userName || "Guest Chef"}
                     </span>
                   </button>
                 </Link>

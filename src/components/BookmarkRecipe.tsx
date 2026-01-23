@@ -1,40 +1,86 @@
-import { BookmarkIcon } from "lucide-react"
+import { toast } from "sonner";
+import { useState } from "react";
+import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 
 import {
   ToggleGroup,
   ToggleGroupItem,
-} from "@/components/ui/toggle-group"
-import { useState } from "react"
-import { toast } from "sonner"
+} from "@/components/ui/toggle-group";
 
-interface LabelProps {
-  text?: string
+import { useBookmarks } from "@/context/BookmarkContext";
+import { bookmarkRecipe, removeBookmark } from "@/lib/bookmark";
+import { useAuth } from "@/context/AuthContext";
+
+interface BookmarkRecipeProps {
+  recipe: {
+    id: string;
+    title: string;
+    image: string;
+  };
+  text?: string;
 }
 
-export function BookmarkRecipe({ text }: LabelProps) {
+export function BookmarkRecipe({ recipe, text }: BookmarkRecipeProps) {
+  const { user } = useAuth();
+  const { bookmarkedIds } = useBookmarks();
+  const recipeIdString = String(recipe.id)
+  const isBookmarked = bookmarkedIds.has(recipeIdString);
 
-  const [isBookmarked, setIsBookmarked] = useState("")
+  const [loading, setLoading] = useState(false);
 
-  const handleBookmark = (e) => {
-    if (!isBookmarked) {
-      setIsBookmarked(e.target.value);
-      toast.success("Added to My Kitchen!")
+  const handleToggle = async () => {
+    if (!user) {
+      toast.error("Login to save recipes");
+      return;
     }
-    // toast.warning("Already added to kitchen");
-    console.log(e);
-  }
+
+    if (loading) return; // 🚫 block spam clicks
+
+    try {
+      setLoading(true);
+
+      if (isBookmarked) {
+        await removeBookmark(recipe.id);
+        toast.warning("Removed from My Kitchen");
+      } else {
+        await bookmarkRecipe(recipe);
+        toast.success("Added to My Kitchen!");
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <ToggleGroup type="single" variant="outline" size="lg">
+    <ToggleGroup type="single" value={isBookmarked ? "saved" : ""}>
       <ToggleGroupItem
-        onClick={(e) => handleBookmark(e.target.value)}
-        value={isBookmarked}
+        value="saved"
         aria-label="Toggle bookmark"
-        className="data-[state=on]:bg-neutral-600/60 bg-neutral-600/50 backdrop-blur-xl data-[state=on]:*:[svg]:fill-green-600 data-[state=on]:*:[svg]:stroke-green-600"
+        onClick={handleToggle}
+        disabled={loading}
+        className={`
+          flex items-center gap-2
+          bg-neutral-600/50 backdrop-blur-xl
+          transition-all
+          ${isBookmarked
+            ? "data-[state=on]:bg-green-600/20"
+            : ""
+          }
+        `}
       >
-        <BookmarkIcon />
-        {text}
+        {isBookmarked ? (
+          <BsBookmarkFill className="h-5 w-5 text-green-600" />
+        ) : (
+          <BsBookmark className="h-5 w-5" />
+        )}
+
+        <span className="text-sm">
+          {isBookmarked ? "Bookmarked" : text}
+        </span>
       </ToggleGroupItem>
     </ToggleGroup>
-  )
+  );
 }

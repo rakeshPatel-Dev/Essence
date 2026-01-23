@@ -1,9 +1,32 @@
-import React from 'react'
+import axios from "axios";
+import { BookHeart, BookOpenCheck, Edit, Quote, ShieldCheck, Verified } from "lucide-react"
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
+
+  const [quotes, setQuotes] = useState([])
+  console.log(quotes);
+
+  const url = "https://dummyjson.com/quotes/random";
+
+  const fetchQuotes = async () => {
+    try {
+      const res = await axios.get(url);
+      setQuotes(res.data);
+      // console.log(res.data.quotes);
+    } catch (error) {
+      console.error("Error fetching quotes: ", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchQuotes();
+  }, [])
+
   return (
-    <div>
-      <main className="max-w-[1000px] mx-auto px-6 py-12">
+    <div className=" bg-[#f4f3f1] dark:bg-[#191b1f]">
+      <main className="max-w-7xl mx-auto px-6 py-12">
         {/* Profile Header Section */}
         <div className="flex flex-col items-center mb-16">
           <div className="relative mb-6">
@@ -18,9 +41,7 @@ const Profile = () => {
               />
             </div>
             <div className="absolute bottom-2 right-2 bg-[#eecd2b] text-[#191b1f] p-2 rounded-full flex items-center justify-center shadow-lg">
-              <span className="material-symbols-outlined text-sm font-bold">
-                verified
-              </span>
+              <Verified className=" text-sm font-bold" />
             </div>
           </div>
           <div className="text-center mb-6">
@@ -28,14 +49,16 @@ const Profile = () => {
               Julianne Sterling
             </h1>
             <p className="text-slate-500 dark:text-slate-400 font-medium">
-              @jsterling • julianne.s@culinaryart.com
+              @jsterling • julianne.s@essence.com
             </p>
           </div>
           <div className="flex gap-4">
-            <button className="bg-[#eecd2b] hover:bg-[#eecd2b]/90 text-[#191b1f] font-bold py-2.5 px-8 rounded-lg transition-all shadow-md flex items-center gap-2">
-              <span className="material-symbols-outlined text-lg">edit</span>
-              Edit Profile
-            </button>
+            <Link to="/user/setting">
+              <button className="bg-[#eecd2b] hover:bg-[#eecd2b]/90 text-[#191b1f] font-bold py-2.5 px-8 rounded-lg transition-all shadow-md flex items-center cursor-pointer gap-2">
+                <Edit className=" text-lg" />
+                Edit Profile
+              </button>
+            </Link>
             <button className="bg-slate-200 dark:bg-[#2C2F33] hover:bg-slate-300 dark:hover:bg-border-dark text-slate-800 dark:text-white font-bold py-2.5 px-4 rounded-lg transition-all">
               <span className="material-symbols-outlined">share</span>
             </button>
@@ -43,13 +66,11 @@ const Profile = () => {
         </div>
         {/* Quote Section */}
         <div className="max-w-2xl mx-auto mb-16 text-center">
-          <div className="text-[#eecd2b] mb-4">
-            <span className="material-symbols-outlined text-4xl opacity-50">
-              format_quote
-            </span>
+          <div className="text-[#eecd2b]  mb-4">
+            <Quote size={50} className=" text-4xl mx-auto opacity-50" />
           </div>
           <h3 className="font-display text-2xl italic text-slate-700 dark:text-slate-200 leading-relaxed px-4">
-            "Cooking is an art, but all art is a kind of confession."
+            "{quotes.quote}"
           </h3>
           <div className="w-16 h-1 bg-[#eecd2b]/30 mx-auto mt-6 rounded-full" />
         </div>
@@ -57,9 +78,7 @@ const Profile = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <div className="bg-white dark:bg-[#2C2F33] border border-slate-200 dark:border-border-dark p-8 rounded-xl flex flex-col items-center text-center transition-transform hover:-translate-y-1">
             <div className="w-12 h-12 bg-[#eecd2b]/10 rounded-full flex items-center justify-center text-[#eecd2b] mb-4">
-              <span className="material-symbols-outlined text-2xl">
-                workspace_premium
-              </span>
+              <ShieldCheck className=" text-2xl" />
             </div>
             <p className="font-display text-4xl font-bold mb-1">42</p>
             <p className="text-sm uppercase tracking-widest font-bold text-slate-400">
@@ -68,7 +87,7 @@ const Profile = () => {
           </div>
           <div className="bg-white dark:bg-[#2C2F33] border border-slate-200 dark:border-border-dark p-8 rounded-xl flex flex-col items-center text-center transition-transform hover:-translate-y-1">
             <div className="w-12 h-12 bg-[#eecd2b]/10 rounded-full flex items-center justify-center text-[#eecd2b] mb-4">
-              <span className="material-symbols-outlined text-2xl">auto_stories</span>
+              <BookOpenCheck className=" text-2xl" />
             </div>
             <p className="font-display text-4xl font-bold mb-1">12</p>
             <p className="text-sm uppercase tracking-widest font-bold text-slate-400">
@@ -77,9 +96,7 @@ const Profile = () => {
           </div>
           <div className="bg-white dark:bg-[#2C2F33] border border-slate-200 dark:border-border-dark p-8 rounded-xl flex flex-col items-center text-center transition-transform hover:-translate-y-1">
             <div className="w-12 h-12 bg-[#eecd2b]/10 rounded-full flex items-center justify-center text-[#eecd2b] mb-4">
-              <span className="material-symbols-outlined text-2xl">
-                bookmark_heart
-              </span>
+              <BookHeart className="text-2xl" />
             </div>
             <p className="font-display text-4xl font-bold mb-1">158</p>
             <p className="text-sm uppercase tracking-widest font-bold text-slate-400">

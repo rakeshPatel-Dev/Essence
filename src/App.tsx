@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 import Home from "./pages/Home"
 import Recipes from "./pages/Recipes"
 import Header from "./components/Header"
@@ -9,24 +9,46 @@ import Profile from "./pages/Profile"
 import Page404 from "./pages/Page404"
 import { Toaster } from "sonner"
 import EditProfile from "./pages/EditProfile"
+import SignIn from "./pages/SignIn"
+import ProtectedRoute from "./components/routes/AuthProtectedRoute"
 
 const App = () => {
+
+  const location = useLocation();
+  const hideLayout = location.pathname == "/signin";
+
   return (
     <div>
       <Toaster position="top-right" />
-      <Header />
+      {!hideLayout && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/all-recipes" element={<Recipes />} />
-        <Route path="/my-kitchen" element={<MyKitchen />} />
         <Route path="/recipe/:recipeSlug" element={<RecipeDetails />} />
-        <Route path="/user/setting" element={<EditProfile />} />
-        <Route path="/user/profile" element={<Profile />} />
+
+        <Route path="/my-kitchen" element={
+          <ProtectedRoute>
+            <MyKitchen />
+          </ProtectedRoute>
+        } />
+        <Route path="/setting" element={
+          <ProtectedRoute>
+            <EditProfile />
+          </ProtectedRoute>
+        } />
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/signin" element={<SignIn />} />
         <Route path="*" element={<Page404 />} />
 
 
       </Routes>
-      <Footer />
+      {!hideLayout && <Footer />}
+
     </div>
   )
 }

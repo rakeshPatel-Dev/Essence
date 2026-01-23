@@ -39,7 +39,7 @@ const Header = () => {
             </div>
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-4 pl-6">
-                <Link to="/user/profile">
+                <Link to="/profile">
                   <button className="flex items-center cursor-pointer gap-2">
                     <div
                       className="size-8 rounded-full bg-cover bg-center"

@@ -1,6 +1,42 @@
 import { ChefHat } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
+
+  const exploreData = [
+    {
+      href: "/",
+      label: "Home"
+    },
+    {
+      href: "/all-recipes",
+      label: "All Recipes"
+    },
+    {
+      href: "/my-kitchen",
+      label: "My Kitchen"
+    },
+    {
+      href: "/profile",
+      label: "Profile"
+    },
+  ]
+
+  const companyData = [
+    {
+      href: "/about",
+      label: "About",
+    },
+    {
+      href: "/faqs",
+      label: "FAQs",
+    },
+    {
+      href: "/contact",
+      label: "Contact",
+    },
+  ]
+
   return (
     <div className='bg-[#f4f2f1] dark:bg-[#191b1f] text-slate-900 dark:text-slate-100 transition-colors duration-300'>
       <footer className="border-t border-neutral-800 py-16">
@@ -22,55 +58,31 @@ const Footer = () => {
             <div className="space-y-4">
               <h4 className="font-bold">Explore</h4>
               <ul className="space-y-2 text-slate-500 dark:text-slate-400 text-sm">
-                <li>
-                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
-                    Featured Chefs
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
-                    Seasonal Guides
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
-                    Cooking Techniques
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
-                    Wine Pairings
-                  </a>
-                </li>
+                {exploreData.map((data, idx) => (
+
+                  <li key={idx}>
+                    <Link to={data.href} className="hover:text-[#eecd2b] transition-colors">
+                      {data.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="space-y-4">
               <h4 className="font-bold">Company</h4>
               <ul className="space-y-2 text-slate-500 dark:text-slate-400 text-sm">
-                <li>
-                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
-                    Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-[#eecd2b] transition-colors" href="#">
-                    Contact
-                  </a>
-                </li>
+                {companyData.map((data, idx) => (
+
+                  <li key={idx}>
+                    <Link to={data.href} className="hover:text-[#eecd2b] transition-colors">
+                      {data.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
-          <div className="border-t border-slate-200 dark:border-slate-800 mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-500 uppercase tracking-widest">
+          <div className="border-t border-slate-200 dark:border-slate-800 mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-center text-slate-500 uppercase tracking-widest">
             <p>© 2024 Epicure Recipe Finder. All Rights Reserved.</p>
             <div  >
               <p>Created by:{" "}
@@ -84,14 +96,14 @@ const Footer = () => {
               </p>
             </div>
             <div className="flex gap-6">
-              <a className="hover:text-[#eecd2b]" href="#">
+              <a target='_blank' rel='noopener' className="hover:text-[#eecd2b]" href="https://www.instagram.com/rikesh_112">
                 Instagram
               </a>
-              <a className="hover:text-[#eecd2b]" href="#">
-                Pinterest
+              <a target='_blank' rel='noopener' className="hover:text-[#eecd2b]" href="https://www.facebook.com/rakeshthedev">
+                Facebook
               </a>
-              <a className="hover:text-[#eecd2b]" href="#">
-                Twitter
+              <a target='_blank' rel='noopener' className="hover:text-[#eecd2b]" href="https://www.linkedin.com/in/rakeshpatel-developer">
+                LinkedIn
               </a>
             </div>
           </div>

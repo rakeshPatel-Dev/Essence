@@ -12,12 +12,12 @@ import { RecipeSort } from "@/components/recipeSelection/RecipeSort"
 // import { RecipePagination } from "@/components/recipeSelection/Pagination"
 
 const Recipes = () => {
-  const context = useContext(RecipeDataContext)
   const [openFilters, setOpenFilters] = useState(false)
   const scrollContainerRef = useRef(null)
   const [loadMore, setLoadMore] = useState(6);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const context = useContext(RecipeDataContext)
   // Data fetching
   if (!context) {
     throw new Error("Recipes must be wrapped in RecipeDataProvider")
@@ -183,7 +183,7 @@ const Recipes = () => {
           {/* ================= RECIPE CONTENT AREA ================= */}
           <section className="flex-1 min-w-0 flex flex-col">
             {/* FIXED CONTROLS BAR */}
-            <div className="shrink-0 flex items-center justify-between py-4 border-b border-black/5 dark:border-white/10 bg-[#f4f2f1] dark:bg-[#191b1f] z-20">
+            <div className="shrink-0 flex-col sm:flex-row gap-4 flex items-center justify-between py-4 border-b border-black/5 dark:border-white/10 bg-[#f4f2f1] dark:bg-[#191b1f] z-20">
               <p className="text-sm text-gray-500">
                 Showing{" "}
                 <span className="font-bold text-gray-900 dark:text-white">

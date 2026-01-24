@@ -66,7 +66,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
         <div>
           {recipe.tags.map((tag) => (
             <span key={recipe.id + tag}
-              className="text-xs bg-neutral-600/30 backdrop-blur-3xl border rounded-full px-2 py-1 mr-2 inline-block mb-2 text-white border-neutral-600/50"
+              className="text-xs bg-muted backdrop-blur-3xl border rounded-full px-2 py-1 mr-2 inline-block mb-2 text-accent-foreground border-neutral-600/50"
             >
               {tag}
             </span>

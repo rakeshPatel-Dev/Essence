@@ -1,11 +1,9 @@
 import { logout } from "@/lib/auth";
 import axios from "axios";
-import { BookHeart, BookOpenCheck, Edit, LogOut, MoreVertical, Palette, Quote, Share2, ShieldCheck, Tags, Verified } from "lucide-react"
+import { Edit, LogOut, MoreVertical, Palette, Quote, Share2, Tags, Verified } from "lucide-react"
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import { collection, getCountFromServer } from "firebase/firestore";
-import { db } from "@/config/firebase";
 import { } from "lucide-react";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -16,21 +14,7 @@ const Profile = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const [totalSaved, setTotalSaved] = useState(0);
   const [quotes, setQuotes] = useState([])
-
-  useEffect(() => {
-    if (!user) return;
-
-    const fetchStats = async () => {
-      const colRef = collection(db, "users", user.uid, "bookmarks");
-      const snapshot = await getCountFromServer(colRef);
-      setTotalSaved(snapshot.data().count);
-    };
-
-    fetchStats();
-  }, [user]);
-
 
   const url = "https://dummyjson.com/quotes/random";
 
@@ -43,8 +27,6 @@ const Profile = () => {
       console.error("Error fetching quotes: ", error);
     }
   }
-
-  console.log(user);
 
   useEffect(() => {
     fetchQuotes();
@@ -90,7 +72,7 @@ const Profile = () => {
             <div className="flex items-center gap-4">
 
               {/* EDIT CTA */}
-              <Link to="/user/setting">
+              <Link to="/">
                 <button className="bg-[#eecd2b] hover:bg-[#eecd2b]/90 text-[#191b1f] font-bold py-2.5 px-8 rounded-lg transition-all shadow-md flex items-center cursor-pointer gap-2">
                   <Edit className="text-lg" />
                   Edit Profile
@@ -135,39 +117,7 @@ const Profile = () => {
           </h3>
           <div className="w-16 h-1 bg-[#eecd2b]/30 mx-auto mt-6 rounded-full" />
         </div>
-        {/* Kitchen Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <div className="bg-white dark:bg-[#2C2F33] border border-slate-200 dark:border-border-dark p-8 rounded-xl flex flex-col items-center text-center transition-transform hover:-translate-y-1">
-            <div className="w-12 h-12 bg-[#eecd2b]/10 rounded-full flex items-center justify-center text-[#eecd2b] mb-4">
-              <ShieldCheck className=" text-2xl" />
-            </div>
-            <p className="font-display text-4xl font-bold mb-1">42</p>
-            <p className="text-sm uppercase tracking-widest font-bold text-slate-400">
-              Recipes Mastered
-            </p>
-          </div>
-          <div className="bg-white dark:bg-[#2C2F33] border border-slate-200 dark:border-border-dark p-8 rounded-xl flex flex-col items-center text-center transition-transform hover:-translate-y-1">
-            <div className="w-12 h-12 bg-[#eecd2b]/10 rounded-full flex items-center justify-center text-[#eecd2b] mb-4">
-              <BookOpenCheck className=" text-2xl" />
-            </div>
-            <p className="font-display text-4xl font-bold mb-1">12</p>
-            <p className="text-sm uppercase tracking-widest font-bold text-slate-400">
-              Collections Created
-            </p>
-          </div>
-          <div className="bg-white dark:bg-[#2C2F33] border border-slate-200 dark:border-border-dark p-8 rounded-xl flex flex-col items-center text-center transition-transform hover:-translate-y-1">
-            <div className="w-12 h-12 bg-[#eecd2b]/10 rounded-full flex items-center justify-center text-[#eecd2b] mb-4">
-              <BookHeart className="text-2xl" />
-            </div>
-            <p className="font-display text-4xl font-bold mb-1">
-              {totalSaved}
-            </p>
-            <p className="text-sm uppercase tracking-widest font-bold text-slate-400">
-              Total Saved
-            </p>
 
-          </div>
-        </div>
         {/* Lower Content Section */}
         <div className="flex flex-col md:flex-row gap-6">
           {/* Culinary Tags */}

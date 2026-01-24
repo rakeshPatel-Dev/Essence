@@ -63,7 +63,7 @@ export function BookmarkRecipe({ recipe, text }: BookmarkRecipeProps) {
         disabled={loading}
         className={`
           flex items-center gap-2
-          bg-neutral-600/50 backdrop-blur-xl
+          bg-muted backdrop-blur-xl
           transition-all
           ${isBookmarked
             ? "data-[state=on]:bg-green-600/20"

@@ -9,6 +9,7 @@ import type { RecipeCardProps } from "../RecipeCard";
 import { FaStar } from "react-icons/fa";
 import { BookmarkRecipe } from "../BookmarkRecipe";
 import { Link } from "react-router-dom";
+import { Button } from "../ui/button";
 
 interface HeroProps {
   recipes: RecipeCardProps["recipe"][];
@@ -99,9 +100,9 @@ const Hero = ({ recipes }: HeroProps) => {
         <div className="flex items-center gap-4">
           {/* View recipe */}
           <Link to={`/recipe/${recipeSlug}`}>
-            <button className="bg-[#eecd2b] cursor-pointer active:scale-95  hover:bg-[#245c5f] px-8 h-12 rounded-xl font-bold flex items-center gap-2 transition-all">
+            <Button className="bg-[#eecd2b] cursor-pointer active:scale-95  hover:bg-[#eecd2b]/80 font-bold transition-all">
               View Recipe <ArrowRight />
-            </button>
+            </Button>
           </Link>
           {/* Bookmark recipe */}
           <BookmarkRecipe recipe={{

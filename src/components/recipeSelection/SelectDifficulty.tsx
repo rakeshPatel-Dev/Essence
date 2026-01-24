@@ -3,39 +3,37 @@ import {
   RadioGroupItem,
 } from "@/components/ui/radio-group";
 
-import { useState } from "react";
 
-const SelectDifficulty = () => {
+type Difficulty = "all" | "Easy" | "Medium";
 
-  const [difficulty, setDifficulty] = useState<"all" | "easy" | "medium">("all");
-
-
+const SelectDifficulty = ({
+  value,
+  onChange,
+}: {
+  value: Difficulty;
+  onChange: (value: Difficulty) => void;
+}) => {
   return (
-    <div>
-      <RadioGroup
-        value={difficulty}
-        onValueChange={(value) =>
-          setDifficulty(value as "all" | "easy" | "medium")
-        }
-        className="flex gap-2"
-      >
-        {["all", "easy", "medium"].map((level) => (
-          <label
-            key={level}
-            className={`cursor-pointer rounded-full border px-4 py-1.5 text-xs font-semibold transition
-          ${difficulty === level
-                ? "border-[#eecd2b] bg-[#eecd2b]/10 text-[#eecd2b]"
-                : "border-gray-300 hover:border-[#eecd2b]"
-              }`}
-          >
-            <RadioGroupItem value={level} className="hidden" />
-            {level.charAt(0).toUpperCase() + level.slice(1)}
-          </label>
-        ))}
-      </RadioGroup>
-    </div>
-
-  )
-}
+    <RadioGroup
+      value={value}
+      onValueChange={(v) => onChange(v as Difficulty)}
+      className="flex gap-2"
+    >
+      {["all", "Easy", "Medium"].map((level) => (
+        <label
+          key={level}
+          className={`cursor-pointer rounded-full border px-4 py-1.5 text-xs font-semibold transition
+          ${value === level
+              ? "border-[#eecd2b] bg-[#eecd2b]/10 text-[#eecd2b]"
+              : "border-gray-300 hover:border-[#eecd2b]"
+            }`}
+        >
+          <RadioGroupItem value={level} className="hidden" />
+          {level.charAt(0).toUpperCase() + level.slice(1)}
+        </label>
+      ))}
+    </RadioGroup>
+  );
+};
 
 export default SelectDifficulty

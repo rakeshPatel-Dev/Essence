@@ -16,7 +16,7 @@ const RecipeDataProvider = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const url = "https://dummyjson.com/recipes";
+  const url = "https://dummyjson.com/recipes/?limit=50";
 
   const fetchRecipeData = async () => {
     setLoading(true);

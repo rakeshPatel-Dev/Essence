@@ -10,12 +10,34 @@ import SelectCookingTime from "@/components/recipeSelection/SelectCookingTime"
 import { SelectCalories } from "@/components/recipeSelection/SelectCalories"
 import { RecipeSort } from "@/components/recipeSelection/RecipeSort"
 // import { RecipePagination } from "@/components/recipeSelection/Pagination"
+type SortOption =
+  | "rating-desc"
+  | "rating-asc"
+  | "prep-asc"
+  | "prep-desc"
+  | "ingredients-desc"
+  | "ingredients-asc"
+  | "instructions-desc"
+  | "instructions-asc"
+  | "people-desc"
+  | "people-asc";
+
 
 const Recipes = () => {
   const [openFilters, setOpenFilters] = useState(false)
   const scrollContainerRef = useRef(null)
   const [loadMore, setLoadMore] = useState(6);
   const [searchQuery, setSearchQuery] = useState("");
+  const [difficulty, setDifficulty] = useState<"all" | "Easy" | "Medium">("all");
+  const [maxCookingTime, setMaxCookingTime] = useState<number>(180);
+  const [cuisine, setCuisine] = useState<string>("all");
+  const [mealType, setMealType] = useState<string>("all");
+  const [sortBy, setSortBy] = useState<SortOption | "">("");
+
+
+
+
+
 
   const context = useContext(RecipeDataContext)
   // Data fetching
@@ -24,15 +46,92 @@ const Recipes = () => {
   }
   const { recipeData, loading, error } = context
 
+  console.log(recipeData);
+
   // Error and loading state
   if (loading) return <p className="text-center mt-20">Loading recipes...</p>
   if (error) return <p className="text-center mt-20 text-red-500">{error}</p>
 
-  const filteredRecipe = recipeData.filter(r =>
-    r.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    r.ingredients.some(ingredient => ingredient.toLowerCase().includes(searchQuery.toLowerCase())) ||
-    r.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  const cuisines = ["all", ...new Set(recipeData.map(r => r.cuisine))];
+  const mealTypes = [
+    "all",
+    ...new Set(recipeData.flatMap(r => r.mealType)),
+  ];
+
+
+
+  const filteredRecipe = recipeData.filter((r) => {
+    const matchesSearch =
+      r.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      r.ingredients.some(i =>
+        i.toLowerCase().includes(searchQuery.toLowerCase())
+      ) ||
+      r.tags.some(t =>
+        t.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+
+    const matchesDifficulty =
+      difficulty === "all" || r.difficulty === difficulty;
+
+    const matchesCuisine =
+      cuisine === "all" || r.cuisine === cuisine;
+
+    const matchesMealType =
+      mealType === "all" || r.mealType.includes(mealType);
+
+    const matchesCookingTime =
+      Number.isFinite(r.cookingTime)
+        ? r.cookingTime <= maxCookingTime
+        : true;
+
+    return (
+      matchesSearch &&
+      matchesDifficulty &&
+      matchesCookingTime &&
+      matchesCuisine &&
+      matchesMealType
+    );
+  });
+
+
+  const sortedRecipes = [...filteredRecipe].sort((a, b) => {
+    if (!sortBy) return 0;
+
+    switch (sortBy) {
+      case "rating-desc":
+        return b.rating - a.rating;
+
+      case "rating-asc":
+        return a.rating - b.rating;
+
+      case "prep-asc":
+        return a.cookingTime - b.cookingTime;
+
+      case "prep-desc":
+        return b.cookingTime - a.cookingTime;
+
+      case "ingredients-desc":
+        return b.ingredients.length - a.ingredients.length;
+
+      case "ingredients-asc":
+        return a.ingredients.length - b.ingredients.length;
+
+      case "instructions-desc":
+        return b.instructions.length - a.instructions.length;
+
+      case "instructions-asc":
+        return a.instructions.length - b.instructions.length;
+
+      case "people-desc":
+        return b.ratingCount - a.ratingCount;
+
+      case "people-asc":
+        return a.ratingCount - b.ratingCount;
+
+      default:
+        return 0;
+    }
+  });
 
   // Load more button
   const handleLoadMore = () => {
@@ -84,14 +183,24 @@ const Recipes = () => {
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
                     Difficulty
                   </h4>
-                  <SelectDifficulty />
+                  <SelectDifficulty
+                    value={difficulty}
+                    onChange={setDifficulty}
+                  />
+
                 </div>
 
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
                     Cooking Time
                   </h4>
-                  <SelectCookingTime />
+                  <SelectCookingTime
+                    value={maxCookingTime}
+                    onChange={setMaxCookingTime}
+                    max={180}
+                  />
+
+
                 </div>
 
                 <div>
@@ -105,14 +214,24 @@ const Recipes = () => {
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
                     Cuisine
                   </h4>
-                  <SelectCuisine />
+                  <SelectCuisine
+                    value={cuisine}
+                    onChange={setCuisine}
+                    options={cuisines}
+                  />
+
                 </div>
 
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
                     Meal Type
                   </h4>
-                  <SelectMealType />
+                  <SelectMealType
+                    value={mealType}
+                    onChange={setMealType}
+                    options={mealTypes}
+                  />
+
                 </div>
               </div>
             </div>
@@ -146,14 +265,24 @@ const Recipes = () => {
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
                     Difficulty
                   </h4>
-                  <SelectDifficulty />
+                  <SelectDifficulty
+                    value={difficulty}
+                    onChange={setDifficulty}
+                  />
+
                 </div>
 
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
                     Cooking Time
                   </h4>
-                  <SelectCookingTime />
+                  <SelectCookingTime
+                    value={maxCookingTime}
+                    onChange={setMaxCookingTime}
+                    max={180}
+                  />
+
+
                 </div>
 
                 <div>
@@ -167,14 +296,24 @@ const Recipes = () => {
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
                     Cuisine
                   </h4>
-                  <SelectCuisine />
+                  <SelectCuisine
+                    value={cuisine}
+                    onChange={setCuisine}
+                    options={cuisines}
+                  />
+
                 </div>
 
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
                     Meal Type
                   </h4>
-                  <SelectMealType />
+                  <SelectMealType
+                    value={mealType}
+                    onChange={setMealType}
+                    options={mealTypes}
+                  />
+
                 </div>
               </div>
             </div>
@@ -196,7 +335,11 @@ const Recipes = () => {
                 <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
                   Sort by:
                 </span>
-                <RecipeSort />
+                <RecipeSort
+                  value={sortBy}
+                  onChange={setSortBy}
+                />
+
               </div>
             </div>
 
@@ -206,7 +349,7 @@ const Recipes = () => {
               className="flex-1 min-h-0 overflow-y-auto py-6"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                {filteredRecipe.slice(0, loadMore).map((recipe) => (
+                {sortedRecipes.slice(0, loadMore).map((recipe) => (
                   <RecipeCard key={recipe.id} recipe={recipe} />
                 ))}
               </div>

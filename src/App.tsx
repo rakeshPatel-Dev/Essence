@@ -8,7 +8,6 @@ import RecipeDetails from "./pages/RecipeDetails"
 import Profile from "./pages/Profile"
 import Page404 from "./pages/Page404"
 import { Toaster } from "sonner"
-import EditProfile from "./pages/EditProfile"
 import SignIn from "./pages/SignIn"
 import ProtectedRoute from "./components/routes/AuthProtectedRoute"
 
@@ -29,11 +28,6 @@ const App = () => {
         <Route path="/my-kitchen" element={
           <ProtectedRoute>
             <MyKitchen />
-          </ProtectedRoute>
-        } />
-        <Route path="/setting" element={
-          <ProtectedRoute>
-            <EditProfile />
           </ProtectedRoute>
         } />
         <Route path="/profile" element={

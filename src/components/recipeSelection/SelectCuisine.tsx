@@ -1,35 +1,30 @@
-import { Label } from "@/components/ui/label"
+import { Label } from "@/components/ui/label";
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@/components/ui/radio-group"
-import { RecipeDataContext } from "@/context/RecipeDataProvider";
-import { useContext } from "react";
+} from "@/components/ui/radio-group";
 
+type Props = {
+  value: string;
+  onChange: (value: string) => void;
+  options: string[];
+};
 
-
-export function SelectCuisine() {
-  const context = useContext(RecipeDataContext);
-
-  if (!context) {
-    throw new Error("Home must be wrapped in RecipeDataProvider");
-  }
-  const { recipeData } = context;
-
-  const Cuisines = [...new Set(recipeData.map(item => item.cuisine))];
-
+export function SelectCuisine({ value, onChange, options }: Props) {
   return (
-    <RadioGroup defaultValue="All">
-      <div className="flex items-center gap-3">
-        <RadioGroupItem value="all" id="all" />
-        <Label htmlFor="all">All</Label>
-      </div>
-      {Cuisines.map((item, idx) => (
-        <div key={idx + item} className="flex items-center gap-3">
-          <RadioGroupItem value={item} id={`cuisine-${idx}`} />
-          <Label htmlFor={`cuisine-${idx}`}>{item}</Label>
+    <RadioGroup
+      value={value}
+      onValueChange={onChange}
+      className="space-y-3"
+    >
+      {options.map((item) => (
+        <div key={item} className="flex items-center gap-3">
+          <RadioGroupItem value={item} id={`cuisine-${item}`} />
+          <Label htmlFor={`cuisine-${item}`}>
+            {item === "all" ? "All" : item}
+          </Label>
         </div>
       ))}
     </RadioGroup>
-  )
+  );
 }

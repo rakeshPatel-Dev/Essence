@@ -1,11 +1,10 @@
 import { logout } from "@/lib/auth";
 import axios from "axios";
-import { Edit, LogOut, MoreVertical, Palette, Quote, Share2, Tags, Verified } from "lucide-react"
+import { LogOut, Palette, Quote, Share2, Verified } from "lucide-react"
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { } from "lucide-react";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 
@@ -72,38 +71,15 @@ const Profile = () => {
             <div className="flex items-center gap-4">
 
               {/* EDIT CTA */}
-              <Link to="/">
-                <button className="bg-[#eecd2b] hover:bg-[#eecd2b]/90 text-[#191b1f] font-bold py-2.5 px-8 rounded-lg transition-all shadow-md flex items-center cursor-pointer gap-2">
-                  <Edit className="text-lg" />
-                  Edit Profile
-                </button>
-              </Link>
-
-              {/* ACTION MENU */}
-              <DropdownMenu>
-                <DropdownMenuTrigger className="bg-slate-200 dark:bg-[#2C2F33] hover:bg-slate-300 dark:hover:bg-border-dark text-slate-800 dark:text-white font-bold py-2.5 px-3 rounded-lg transition-all shadow-sm flex items-center">
-                  <MoreVertical size={18} />
-                </DropdownMenuTrigger>
-
-                <DropdownMenuContent align="end" className="min-w-40">
-                  <DropdownMenuItem className="flex items-center gap-2">
-                    <Share2 size={16} />
-                    Share
-                  </DropdownMenuItem>
-
-                  <DropdownMenuSeparator />
-
-                  <DropdownMenuItem asChild>
-                    <button
-                      onClick={handleLogout}
-                      className="flex items-center gap-2 text-red-600 dark:text-red-400 w-full"
-                    >
-                      <LogOut size={16} />
-                      Logout
-                    </button>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <button className="bg-[#eecd2b] hover:bg-[#eecd2b]/90 text-[#191b1f] font-bold py-2.5 px-8 rounded-lg transition-all shadow-md flex items-center cursor-pointer gap-2">
+                <Share2 className="text-lg" />
+                Share
+              </button>
+              <button
+                onClick={handleLogout} className="flex items-center gap-2 text-white px-8 cursor-pointer hover:bg-red-500/80 transition-all py-2.5 rounded-lg   w-full bg-red-500">
+                <LogOut className="text-lg" />
+                Logout
+              </button>
             </div>
           </div>
         </div>
@@ -120,18 +96,6 @@ const Profile = () => {
 
         {/* Lower Content Section */}
         <div className="flex flex-col md:flex-row gap-6">
-          {/* Culinary Tags */}
-          <div className="space-y-6 w-3/12">
-            <div className="flex items-center gap-3">
-              < Tags className="text-[#eecd2b]" />
-              <h4 className="font-display text-xl font-bold">Culinary Tags</h4>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <span className="bg-[#eecd2b]/10 text-[#eecd2b] border border-[#eecd2b]/20 px-4 py-2 rounded-full text-sm font-bold hover:bg-[#eecd2b] hover:text-[#191b1f] cursor-pointer transition-colors">
-                #PastryLover
-              </span>
-            </div>
-          </div>
           {/* Appearance Theme Settings */}
           <div className="space-y-6 flex-1">
             <div className="flex items-center gap-3">
